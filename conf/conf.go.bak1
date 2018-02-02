@@ -1,0 +1,42 @@
+
+package conf
+
+import (
+	"io/ioutil"
+	json "github.com/bitly/go-simplejson"
+)
+
+type Conf struct {
+	ConfReader ConfReader
+	json.Json
+}
+var conf *Conf
+
+func GetConf () (*Conf, error) {
+	confReader := conf
+	if (conf == nil) {
+		data, err := cr.Read
+		if err != nil {
+			return nil, err
+		}
+
+		conf = json.New()
+		conf.UnmarshalJSON(data)
+	}
+	return conf, nil
+}
+
+type ConfReader interface {
+	ReadConf() ([]byte, error)
+}
+
+type DefaultConfReader struct {}
+func (r *DefaultConfReader) ReadConf() ([]byte, error) {
+	return ioutil.ReadFile("conf.json")
+}
+
+var defaultConfReader = &DefaultConfReader{}
+
+
+
+
