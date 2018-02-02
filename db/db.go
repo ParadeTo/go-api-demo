@@ -36,6 +36,10 @@ func GetMysqlConn (key ...string) *DB {
 
 	conf := Conf.GetConf()
 
+	if conf == nil {
+		return nil
+	}
+
 	if mysqlConns[mysqlConnKey] == nil {
 		mysqlMap := conf.Get("mysql").Get(mysqlConnKey)
 		username := mysqlMap.Get("username").MustString()
@@ -47,6 +51,8 @@ func GetMysqlConn (key ...string) *DB {
 		if err != nil {
 			return nil
 		}
+		// Enable Logger, show detailed log
+		conn.LogMode(true)
 		mysqlConns[mysqlConnKey] = conn
 	}
 	return mysqlConns[mysqlConnKey]

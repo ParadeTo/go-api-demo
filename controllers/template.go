@@ -16,6 +16,10 @@ type Template struct {
 	UpdateTime time.Time
 }
 
+func (Template) TableName() string {
+	return "t_content_template"
+}
+
 func (t Template) Get(c *gin.Context)  {
 	conn := db.GetMysqlConn()
 	conn.First(t)
