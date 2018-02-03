@@ -5,7 +5,12 @@ import (
 	. "github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"sync"
+	"fmt"
 )
+
+func init() {
+	fmt.Println("i am db")
+}
 
 var mysqlConns map[string]*DB = make(map[string]*DB)
 var mysqlConnKey = "default"
@@ -27,8 +32,8 @@ var mysqlMux sync.Mutex
 //}
 
 func GetMysqlConn (key ...string) *DB {
-	//mysqlMux.Lock()
-	//defer mysqlMux.Unlock()
+	mysqlMux.Lock()
+	defer mysqlMux.Unlock()
 
 	if key != nil {
 		mysqlConnKey = key[0]

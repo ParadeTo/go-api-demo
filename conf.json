@@ -2,7 +2,6 @@
   "port": "8080",
   "mysql": {
     "default": {
-      "type": "mysql",
       "username": "root",
       "password": "123456",
       "dbname": "operation",
@@ -11,7 +10,6 @@
   },
   "redis": {
     "default": {
-      "type": "redis",
       "username": "root",
       "password": "123456",
       "dbname": "test",

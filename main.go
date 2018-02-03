@@ -4,6 +4,7 @@ import (
 	//"github.com/gin-gonic/gin"
 	"apidemo/controllers"
 	_ "apidemo/conf"
+	_ "apidemo/db"
 	//"apidemo/conf"
 	"fmt"
 	"apidemo/db"
